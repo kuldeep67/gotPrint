@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Fabric js</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<select id="selectUser" onchange="setUserId()">
+  <option value=null>Select User Id</option>
+</select>
+
+<table style="width:50%">
+<tr>
+  <th>Todo ID</th>
+  <th>Todo Title</th>
+  <th>Completed?</th>
+</tr>
+<tr id="todoTable">
+</tr>
+</table>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
+<script src="script.js"></script>
+</body>
+
+</html>
