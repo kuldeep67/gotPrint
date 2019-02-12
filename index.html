@@ -7,13 +7,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Fabric js</title>
-
-  <link rel="stylesheet" href="css/main.css">
-  <link rel="icon" href="images/favicon.png">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <script src="js/scripts.js"></script>
+
+  <button id="generateCanvas" onclick = "generateCanvas()">Generate Canvas</button>
+  <select id="canvasIds" onchange="setCanvasId()">
+    <option value=null>canvas id</option>
+  </select>
+  <select id="canvasShape" onchange="setCanvasShape()">
+    <option value="">canvas shape</option>
+    <option value="rect">Rectangle</option>
+    <option value="triangle">Triangle</option>
+    <option value="circle">Circle</option>
+  </select>
+  <button id="generateShapes" onclick="createShapes(canvasRefrenceObj.shape, canvasObj[canvasRefrenceObj.id], canvasRefrenceObj.id)">Generate shapes</button>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.6.0/fabric.js"></script>
+  <script src="script.js"></script>
 </body>
 
 </html>
