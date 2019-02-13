@@ -20,7 +20,9 @@ var app = (function(){
             checkBox.type = 'checkbox';
             checkBox.class = 'completed';
             checkBox.disabled = true;
-            checkBox.checked = completed?true:false;
+            checkBox['checked'] = completed?true:false;
+            checkBox.className = 'dynCheck';
+            checkBox.value = completed?'yes':'no';
         td1.appendChild(document.createTextNode(id));
         td2.appendChild(document.createTextNode(todoTitle));
         td3.appendChild(checkBox);
@@ -128,7 +130,22 @@ var app = (function(){
         		}
         		return 0;
         	});
-        	console.log(trows[1].innerHTML);
+//        	console.log(trows[1].innerHTML);
+//        console.log(trows);
+        tbody.innerHTML='';
+        trows.forEach(function(element) {
+          tbody.innerHTML += element.innerHTML;
+
+
+        });
+        var allCheckBox = document.querySelectorAll('.dynCheck');
+        allCheckBox.forEach(function(element){
+            if(element.value==='yes'){
+                element.checked = true;
+            }else{
+                element.checked = false;
+            }
+        })
     }
 
 
@@ -144,7 +161,14 @@ var app = (function(){
         }
 
         if(index === 2 && elm.getElementsByTagName("TD")[index]){
-           v = elm.getElementsByTagName("TD")[index].children[0].checked ? 1 : 0;
+            var checkBoxEle = elm.getElementsByTagName("TD")[index].children[0];
+           v = checkBoxEle.checked ? 1 : 0;
+                if(checkBoxEle.value==='yes'){
+                    elm.getElementsByTagName("TD")[index].children[0].checked===true;
+                }
+                 else {
+                    elm.getElementsByTagName("TD")[index].children[0].checked===false;
+                }
         }
 
         return v;
