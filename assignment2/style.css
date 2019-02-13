@@ -1,0 +1,13 @@
+#todoTable {
+    text-align: center;
+    border: 1px solid;
+}
+#todoTableBody{
+    display: block;
+    height: 500px;
+    overflow-y: scroll;
+}
+
+#todoTable td{
+    border: 1px solid;
+}
