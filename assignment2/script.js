@@ -3,7 +3,7 @@ var app = (function(){
 
     var select = document.getElementById('selectUser');
     var tbody = document.getElementById("todoTableBody");
-    var descId = 1, descTitle=1;
+    var descId = 1, descTitle=1, descCompleted=1;
 
     //Not in use
     var setUserId = function(){
@@ -109,7 +109,8 @@ var app = (function(){
 
     }
     var sortByCompleted = function(){
-        console.log("sort completed")
+        descCompleted *= -1;
+        sortData(2,descCompleted);
     }
 
     function sortData(index,desc){
@@ -118,6 +119,7 @@ var app = (function(){
         	trows.sort(function(a, b) {
         		var first = getVal(a,index);
         		var second = getVal(b,index);
+
                 if(first < second) {
         			return -1*desc;
         		}
@@ -132,13 +134,19 @@ var app = (function(){
 
     function getVal(elm,index){
         var v='';
-        if(elm.getElementsByTagName("TD")[index]){
-            v = elm.getElementsByTagName("TD")[index].innerHTML.toLowerCase();
-        };
 
-        if(isNumeric(v)){
+        if(elm.getElementsByTagName("TD")[index] && index!==2){
+            v = elm.getElementsByTagName("TD")[index].innerHTML.toLowerCase();
+        }
+
+        if(isNumeric(v) && index !== 2){
             v = parseInt(v,10);
         }
+
+        if(index === 2 && elm.getElementsByTagName("TD")[index]){
+           v = elm.getElementsByTagName("TD")[index].children[0].checked ? 1 : 0;
+        }
+
         return v;
     }
 
