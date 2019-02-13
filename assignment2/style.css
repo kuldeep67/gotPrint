@@ -2,12 +2,20 @@
     text-align: center;
     border: 1px solid;
 }
-#todoTableBody{
+/*#todoTableBody{
     display: block;
     height: 500px;
     overflow-y: scroll;
 }
 
+#todoTable thead tr {
+    display: inline-block;
+}
+
+#todoTable thead th{
+
+}
+*/
 #todoTable td{
     border: 1px solid;
 }

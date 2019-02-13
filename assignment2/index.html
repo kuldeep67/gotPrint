@@ -15,18 +15,26 @@
   <option value=null>Select User Id</option>
 </select>
 
-<table id="todoTable">
-<tbody id="todoTableBody">
-  <tr>
-    <th>Todo ID<sapn class="table-button" onclick="app.sortById()"></sapn></th>
-    <th>Todo Title <sapn class="table-button" onclick="app.sortByTitle()"></sapn></th>
-    <th>Completed?<sapn class="table-button" onclick="app.sortByCompleted()"></sapn></th>
-  </tr>
-</tbody>
-</table>
-<div style="width:400px">
-<canvas id="myChart" width="100" height="100"></canvas>
+<div>
+  <div style="float:left; margin:20px 50px 0 0">
+  <table id="todoTable">
+    <thead>
+      <tr>
+        <th>Todo ID<sapn class="table-button" onclick="app.sortById()"></sapn></th>
+        <th>Todo Title <sapn class="table-button" onclick="app.sortByTitle()"></sapn></th>
+        <th>Completed?<sapn class="table-button" onclick="app.sortByCompleted()"></sapn></th>
+      </tr>
+    </thead>
+    <tbody id="todoTableBody">
+    </tbody>
+  </table>
+  </div>
+  <div style="width:400px;float:left;">
+    <canvas id="myChart" width="100" height="100"></canvas>
+  </div>
+
 </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
 <script src="script.js"></script>
