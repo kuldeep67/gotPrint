@@ -11,16 +11,16 @@
 </head>
 
 <body>
-<select id="selectUser" onchange="setUserId()">
+<select id="selectUser" onchange="app.setUserId()">
   <option value=null>Select User Id</option>
 </select>
 
 <table id="todoTable">
 <tbody id="todoTableBody">
   <tr>
-    <th>Todo ID</th>
-    <th>Todo Title</th>
-    <th>Completed?</th>
+    <th>Todo ID<sapn class="table-button" onclick="app.sortById()"></sapn></th>
+    <th>Todo Title <sapn class="table-button" onclick="app.sortByTitle()"></sapn></th>
+    <th>Completed?<sapn class="table-button" onclick="app.sortByCompleted()"></sapn></th>
   </tr>
 </tbody>
 </table>

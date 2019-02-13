@@ -1,10 +1,12 @@
-(function(){
+var app = (function(){
     'use strict';
 
     var select = document.getElementById('selectUser');
+    var tbody = document.getElementById("todoTableBody");
+    var descId = 1, descTitle=1;
 
     //Not in use
-    function setUserId(){
+    var setUserId = function(){
        return document.getElementById('selectUser').value;
     }
 
@@ -25,7 +27,7 @@
         tr.appendChild(td1);
         tr.appendChild(td2);
         tr.appendChild(td3);
-        document.getElementById("todoTableBody").appendChild(tr);
+        tbody.appendChild(tr);
 
     }
 
@@ -95,6 +97,63 @@
             });
         }
     );
+    var sortById = function(){
+        descId *= -1
+        sortData(0,descId);
+        ;
+
+    }
+    var sortByTitle = function(){
+        descTitle *= -1;
+        sortData(1,descTitle);
+
+    }
+    var sortByCompleted = function(){
+        console.log("sort completed")
+    }
+
+    function sortData(index,desc){
+        var sortAll = true, rows = tbody.rows, shouldSort=false, tempRow;
+        var trows = [...rows];
+        	trows.sort(function(a, b) {
+        		var first = getVal(a,index);
+        		var second = getVal(b,index);
+                if(first < second) {
+        			return -1*desc;
+        		}
+        		if(first > second) {
+        			return 1*desc;
+        		}
+        		return 0;
+        	});
+        	console.log(trows[1].innerHTML);
+    }
+
+
+    function getVal(elm,index){
+        var v='';
+        if(elm.getElementsByTagName("TD")[index]){
+            v = elm.getElementsByTagName("TD")[index].innerHTML.toLowerCase();
+        };
+
+        if(isNumeric(v)){
+            v = parseInt(v,10);
+        }
+        return v;
+    }
+
+    function isNumeric(n) {
+      return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    return {
+        setUserId: setUserId,
+        sortById: sortById,
+        sortByTitle: sortByTitle,
+        sortByCompleted: sortByCompleted
+
+    };
+
 })();
 
 
