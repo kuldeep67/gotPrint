@@ -58,8 +58,8 @@
                }
                addTableData(userData[i]['id'], userData[i]['title'], userData[i]['completed'])
             }
-            console.log(completedCount);
 
+            // creating chart
             var myChart = new Chart(barChart, {
                 type: 'bar',
                 data: {
