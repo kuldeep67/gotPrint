@@ -12,17 +12,17 @@
 
 <body>
 
-<button id="generateCanvas" onclick="generateCanvas()">Generate Canvas</button>
-<select id="canvasIds" onchange="setCanvasId()">
+<button id="generateCanvas" onclick="app.generateCanvas()">Generate Canvas</button>
+<select id="canvasIds" onchange="app.setCanvasId()">
   <option value=null>canvas id</option>
 </select>
-<select id="canvasShape" onchange="setCanvasShape()">
+<select id="canvasShape" onchange="app.setCanvasShape()">
   <option value="">canvas shape</option>
   <option value="rect">Rectangle</option>
   <option value="triangle">Triangle</option>
   <option value="circle">Circle</option>
 </select>
-<button id="generateShapes" onclick="createShapes(canvasRefrenceObj.shape, canvasObj[canvasRefrenceObj.id], canvasRefrenceObj.id)">Generate shapes</button>
+<button id="generateShapes" onclick="app.createShapes(app.getRefObject().shape, app.getObject()[app.getRefObject().id], app.getRefObject())">Generate shapes</button>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.6.0/fabric.js"></script>
