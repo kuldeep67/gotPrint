@@ -85,7 +85,6 @@ var app=(function() {
         document.addEventListener('mouseup', function(e) {
             if (e.target.localName==='canvas'&& initialCanvas) {
                 var canvasId=e.target.offsetParent.children[0].id;
-
                 if (canvasId !==initialCanvas) {
                     var dynminitialCanvasId=parseInt(initialCanvas.replace(/\D/g, ''));
                     var dynmId=parseInt(canvasId.replace(/\D/g, ''));
@@ -94,10 +93,10 @@ var app=(function() {
                     dragImage.clone(function(clonedObj) {
                         canvasObj[dynmId].discardActiveObject();
 
-                        clonedObj.set( {
-                            left: 0,
-                                top: 0,
-                                evented: true,
+                        clonedObj.set({
+                            left: e.offsetX,
+                            top: e.offsetY,
+                            evented: true,
                         }
 
                         );
