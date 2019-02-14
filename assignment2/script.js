@@ -1,16 +1,45 @@
 var app = (function(){
     'use strict';
+    var descId = 1,
+        descTitle=1,
+        descCompleted=1,
+        userId=null,
+        completedCount=0,
+        selectDataArray=[],
+        totalLength=0,
+        myChart,
+        select,
+        tbody,
+        barChart;
 
-    var select = document.getElementById('selectUser');
-    var tbody = document.getElementById("todoTableBody");
-    var descId = 1, descTitle=1, descCompleted=1, userId=null, completedCount=0, selectDataArray=[],totalLength=0, myChart;
-    var barChart = document.getElementById("myChart").getContext('2d');
+    select = document.getElementById('selectUser');
+    tbody = document.getElementById("todoTableBody");
+    barChart = document.getElementById("myChart").getContext('2d');
+
 
     var setUserId = function(){
        userId = document.getElementById('selectUser').value;
        var event = new Event('USERID_CHANGED');
        document.dispatchEvent(event);
 
+    }
+
+    var sortById = function(){
+        descId *= -1
+        sortData(0,descId);
+        ;
+
+    }
+
+    var sortByTitle = function(){
+        descTitle *= -1;
+        sortData(1,descTitle);
+
+    }
+
+    var sortByCompleted = function(){
+        descCompleted *= -1;
+        sortData(2,descCompleted);
     }
 
     //Dynamically generating table
@@ -35,8 +64,6 @@ var app = (function(){
         tbody.appendChild(tr);
 
     }
-
-
 
     // Getting api response
     async function getData() {
@@ -107,7 +134,7 @@ var app = (function(){
 
     function generateChart(totalLength,originalLength) {
         if (totalLength !== originalLength && myChart) {
-            myChart.data.datasets[0].data = [completedCount,(totalLength-completedCount)];
+            myChart.data.datasets[0].data = [calcPercent(completedCount,totalLength), calcPercent((totalLength-completedCount),totalLength)];
             myChart.update();
         }
         else{
@@ -116,8 +143,8 @@ var app = (function(){
                 data: {
                     labels: ["Completed", "NotCompleted"],
                     datasets: [{
-                        label: 'Total Count',
-                        data: [completedCount,(totalLength-completedCount)],
+                        label: 'percentage',
+                        data: [calcPercent(completedCount,totalLength), calcPercent((totalLength-completedCount),totalLength)],
                         backgroundColor: [
                             'rgba(75, 192, 192, 0.2)',
                             'rgba(255, 99, 132, 0.2)'
@@ -147,21 +174,6 @@ var app = (function(){
         }
     }
 
-    var sortById = function(){
-        descId *= -1
-        sortData(0,descId);
-        ;
-
-    }
-    var sortByTitle = function(){
-        descTitle *= -1;
-        sortData(1,descTitle);
-
-    }
-    var sortByCompleted = function(){
-        descCompleted *= -1;
-        sortData(2,descCompleted);
-    }
 
     function sortData(index,desc){
         var sortAll = true, rows = tbody.rows, shouldSort=false, tempRow;
@@ -222,6 +234,10 @@ var app = (function(){
 
     function isNumeric(n) {
       return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    function calcPercent(num, total){
+        return Math.round(((num/total)*100));
     }
 
     return {
