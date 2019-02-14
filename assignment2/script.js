@@ -8,7 +8,6 @@ var app = (function(){
 
     var setUserId = function(){
        userId = document.getElementById('selectUser').value;
-       console.log(userId);
        var event = new Event('USERID_CHANGED');
        document.dispatchEvent(event);
 
@@ -70,7 +69,6 @@ var app = (function(){
 
 
             document.addEventListener('USERID_CHANGED', function (e) {
-            console.log(userId);
             tbody.innerHTML='';
             generateTable(userData, userId)
             generateChart(totalLength,userData.length);
@@ -180,8 +178,6 @@ var app = (function(){
         		}
         		return 0;
         	});
-//        	console.log(trows[1].innerHTML);
-//        console.log(trows);
         tbody.innerHTML='';
         trows.forEach(function(element) {
           tbody.innerHTML += element.innerHTML;
