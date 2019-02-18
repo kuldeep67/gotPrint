@@ -130,56 +130,57 @@ var app=(function() {
     var createShapes=function(shape, canvas, id) {
         switch (shape) {
             case 'rect':
-                createRect();
+                createRect(canvas);
             break;
             case 'triangle':
-                createTriangle();
+                createTriangle(canvas);
             break;
             case 'circle':
-                createCircle();
+                createCircle(canvas);
             break;
             default:
                 return -1;
         }
+    }
 
-        function createRect() {
-            var rect=new fabric.Rect( {
-                left: 100,
-                    top: 100,
-                    fill: 'red',
-                    width: 20,
-                    height: 20
-            }
 
-            );
-
-            canvas.add(rect);
-        }
-
-        function createTriangle() {
-            var triangle=new fabric.Triangle( {
+    function createRect(canvas) {
+        var rect=new fabric.Rect( {
+            left: 100,
+                top: 100,
+                fill: 'red',
                 width: 20,
-                    height: 30,
-                    fill: 'red',
-                    left: 50,
-                    top: 50
-            }
-
-            );
-            canvas.add(triangle);
+                height: 20
         }
 
-        function createCircle() {
-            var circle=new fabric.Circle( {
-                radius: 20,
-                    fill: 'red',
-                    left: 150,
-                    top: 100
-            }
+        );
 
-            );
-            canvas.add(circle);
+        canvas.add(rect);
+    }
+
+    function createTriangle(canvas) {
+        var triangle=new fabric.Triangle( {
+            width: 20,
+                height: 30,
+                fill: 'red',
+                left: 50,
+                top: 50
         }
+
+        );
+        canvas.add(triangle);
+    }
+
+    function createCircle(canvas) {
+        var circle=new fabric.Circle( {
+            radius: 20,
+                fill: 'red',
+                left: 150,
+                top: 100
+        }
+
+        );
+        canvas.add(circle);
     }
 
     var getRefObject=function() {
